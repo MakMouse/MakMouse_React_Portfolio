@@ -1,5 +1,4 @@
 import './Hero.css'
-т
 const Hero = () => {
   return (
     <section id="hero" className="section hero-bg">
@@ -24,5 +23,6 @@ const Hero = () => {
     </section>
   );
 };
+
 
 export default Hero;
