@@ -1,0 +1,80 @@
+.main-header {
+  position: fixed;
+  top: 0; width: 100%;
+  height: var(--nav-height);
+  background: rgba(30, 30, 30, 0.65);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.main-header nav { display: flex; justify-content: space-between; width: 100%; align-items: center; }
+.logo { font-size: 1.8rem; font-weight: bold; text-decoration: none; color: #fff; }
+.logo span { color: var(--primary-color); }
+
+.nav-links { display: flex; gap: 25px;  }
+.nav-links a { text-decoration: none; color: #c5c5c5; transition: 0.3s; opacity: 0.8; position: relative;}
+.nav-links a:hover { opacity: 1; color: var(--primary-color); }
+
+.nav-links a.active {
+  opacity: 1.0;
+  color: #fff;
+}
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;            /* Спочатку ширини немає (невидима) */
+    height: 2px;         /* Товщина лінії */
+    bottom: 0;           /* Притискаємо до низу */
+    left: 0;             /* Старт зліва */
+    background-color: var(--primary-color); /* Твій помаранчевий */
+    
+    /* Анімація ширини */
+    transition: width 0.3s ease-out; 
+}
+
+/* 4. Стан при наведенні (Лінія виїжджає) */
+.nav-links a:hover::after {
+    width: 100%; /* Розтягується на всю довжину слова */
+}
+
+/* 5. Активне посилання (щоб "About me" світилося, якщо ти на ньому) */
+.nav-links a.active::after {
+    width: 100%; /* Активне посилання завжди підкреслене */
+    box-shadow: 0 0 10px var(--primary-color); /* Додаємо легке світіння (glow) */
+}
+
+/* --- LOADING BAR (WAVE EFFECT) --- */
+
+.loading-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: var(--primary-color);
+    width: 100%; /* Тепер ширина завжди 100%, але ми її стискаємо масштабом */
+    z-index: 1001;
+
+    /* СТАН 2: ВИХІД (Коли клас active зникає) */
+    /* Смужка стискається в нуль */
+    transform: scaleX(0); 
+    /* ГОЛОВНИЙ ФОКУС: Точка опори зміщується направо. 
+       Тому смужка зникає в сторону правого краю. */
+    transform-origin: right; 
+    
+    /* Анімація зникнення (трохи швидша за появу) */
+    transition: transform 0.4s ease-in-out;
+}
+
+/* СТАН 1: ВХІД (Коли ми клікнули) */
+.loading-bar.active {
+    /* Смужка розтягується на весь екран */
+    transform: scaleX(1);
+    /* Точка опори зліва — тому вона росте зліва направо */
+    transform-origin: left;
+    
+    /* Анімація появи (0.8s, як у твоєму таймері в JS) */
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}

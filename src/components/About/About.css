@@ -1,0 +1,137 @@
+/* =========================================
+   ABOUT SECTION: DYNAMIC TECH FLOW
+   ========================================= */
+
+/* 1. БАЗОВИЙ ФОН */
+#about {
+  position: relative;
+  background-color: #050505; /* Той самий глибокий чорний, що і в Hero */
+  /* Додаємо дуже легкий вертикальний градієнт для глибини */
+  background-image: linear-gradient(to bottom, #050505 0%, #0a0a0a 100%);
+  overflow: hidden;
+  /* Твої стандартні відступи */
+  padding: 100px 0;
+}
+
+/* 2. ТЕХНІЧНА СІТКА (Трохи дрібніша для різноманіття) */
+#about::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  
+  background-size: 40px 40px; /* Трохи менша клітинка, ніж в Hero */
+  
+  /* М'яка маска: сітка видна в центрі і зникає до країв */
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 95%);
+  
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 3. ПОДВІЙНЕ СВІТЛО (The Flow) */
+/* Контейнер для світла розтягуємо на всю секцію */
+.about-glow {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Світло 1: Зліва зверху (біля тексту) - м'якше */
+.about-glow::before {
+  content: "";
+  position: absolute;
+  top: 10%; left: -10%;
+  width: 600px; height: 600px;
+  
+  background: radial-gradient(circle, rgba(255, 69, 0, 0.08) 0%, transparent 60%);
+  filter: blur(80px);
+  opacity: 0.8;
+  
+  /* Повільний дрейф */
+  animation: flowDrift1 15s infinite alternate ease-in-out;
+}
+
+/* Світло 2: Справа знизу (біля фото) - трохи яскравіше */
+.about-glow::after {
+  content: "";
+  position: absolute;
+  bottom: 0%; right: -5%;
+  width: 700px; height: 700px;
+  
+  background: radial-gradient(circle, rgba(255, 69, 0, 0.12) 0%, transparent 60%);
+  filter: blur(100px);
+  opacity: 0.9;
+  
+  animation: flowDrift2 12s infinite alternate ease-in-out;
+}
+
+/* Анімації для плавного руху світла */
+@keyframes flowDrift1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(50px, 30px) scale(1.1); }
+}
+
+@keyframes flowDrift2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-60px, -40px) scale(1.05); }
+}
+
+/* ВАЖЛИВО: Контент має бути над фоном */
+.container, .top-title-bar {
+  position: relative;
+  z-index: 2;
+}
+/* --- STYLE 2: CLEAN DOCUMENTATION --- */
+.text-block {
+  background: transparent; /* Прибираємо фон */
+  border: none;
+  box-shadow: none;
+  padding: 20px 0 20px 40px; /* Відступ зліва від лінії */
+  
+  /* Вертикальна лінія зліва */
+  border-left: 4px solid var(--primary-color); 
+  position: relative;
+}
+
+/* Легкий градієнт від лінії вправо (опціонально) */
+.text-block::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(90deg, rgba(255, 69, 0, 0.05), transparent);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.badge {
+  background: transparent;
+  padding: 0;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+.text-block h3 {
+  font-size: 2.5rem; /* Більший шрифт */
+  margin-bottom: 30px;
+}
+
+.text-block p {
+  color: #bbb;
+  font-size: 1.1rem;
+}
+
+.about-image-box img {
+  /* Робимо фото чорно-білим, поки не наведеш */
+  filter: grayscale(100%);
+  transition: 0.5s;
+}
+
+.about-image-box:hover img {
+  filter: grayscale(0%);
+}

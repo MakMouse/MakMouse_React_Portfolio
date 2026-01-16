@@ -1,0 +1,68 @@
+.top-title-bar {
+  width: 90%;
+  max-width: 1400px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  margin: 0 auto 60px;
+}
+
+.top-title-bar h2 {
+  font-size: 2rem;
+}
+/* --- ВАРІАНТ 3: АТМОСФЕРНИЙ ПОТІК --- */
+section#hero {
+  position: relative;
+  background: #020202;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* Пляма 1: Твій помаранчевий */
+section#hero::before {
+  content: "";
+  position: absolute;
+  top: 20%; left: 20%;
+  width: 600px; height: 600px;
+  background: rgba(255, 69, 0, 0.2);
+  filter: blur(120px);
+  border-radius: 50%;
+  animation: blobMove1 25s infinite alternate ease-in-out;
+  z-index: 0;
+}
+
+/* Пляма 2: Глибокий додатковий колір (наприклад, темний індиго) для контрасту */
+section#hero::after {
+  content: "";
+  position: absolute;
+  bottom: 10%; right: 20%;
+  width: 500px; height: 500px;
+  background: rgba(40, 10, 80, 0.3); /* Темно-фіолетовий */
+  filter: blur(120px);
+  border-radius: 50%;
+  animation: blobMove2 30s infinite alternate ease-in-out;
+  z-index: 0;
+}
+
+/* Анімації руху плям */
+@keyframes blobMove1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(200px, -100px) scale(1.2); }
+  100% { transform: translate(-100px, 100px) scale(0.9); }
+}
+
+@keyframes blobMove2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-200px, 50px) scale(1.1); }
+  100% { transform: translate(150px, -150px) scale(1.3); }
+}
+
+/* Важливо: Контент має бути поверх плям */
+section#hero .container {
+  position: relative;
+  z-index: 2;
+}

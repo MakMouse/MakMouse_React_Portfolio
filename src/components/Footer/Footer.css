@@ -1,0 +1,174 @@
+/* --- FOOTER MAIN --- */
+.main-footer {
+  /* Глибокий чорний фон */
+  background: #050505;
+  padding: 80px 0 30px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Декоративна лінія зверху (світиться по центру, згасає по краях) */
+.main-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    var(--primary-color) 50%, 
+    transparent 100%
+  );
+  opacity: 0.5;
+  box-shadow: 0 -10px 20px var(--primary-color);
+}
+
+/* --- LAYOUT --- */
+.footer-content {
+  display: grid;
+  /* 3 рівні колонки, але центр (соцмережі) може бути трохи вужчим */
+  grid-template-columns: 1.2fr 1fr 1.2fr;
+  gap: 40px;
+  align-items: start; /* Вирівнювання по верху */
+  margin-bottom: 50px;
+}
+
+.footer-content h4 {
+  font-size: 1.1rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+/* --- 1. LOGO COLUMN --- */
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Вирівняв вліво, бо по центру виглядає дешево */
+}
+
+.footer-logo h3 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.footer-logo span {
+  color: var(--primary-color);
+}
+
+.footer-logo p {
+  color: #888;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 300px;
+  margin: 0;
+}
+
+/* --- 2. SOCIALS COLUMN (FIXED TO ROW) --- */
+.footer-socials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: row; /* <--- Гловна зміна: тепер у рядок */
+  gap: 20px;           /* Відступ між кнопками */
+  justify-content: center;
+  flex-wrap: wrap;     /* Щоб на дуже малих екранах не ламало верстку */
+}
+
+/* Сама кнопка */
+.social-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #aaa;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 50px; /* Робимо їх овальними кнопками */
+  background: rgba(255, 255, 255, 0.03); /* Легкий фон */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Ховер ефект */
+.social-item:hover {
+  background: rgba(255, 69, 0, 0.1);
+  border-color: var(--primary-color);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.social-item .icon {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  display: flex; /* Рівняє іконку */
+  transition: 0.3s;
+}
+
+.social-item:hover .icon {
+  filter: drop-shadow(0 0 5px var(--primary-color));
+}
+
+/* --- 3. CTA COLUMN --- */
+.footer-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Вирівняв вправо для балансу */
+  text-align: right;
+}
+
+.footer-mail {
+  font-size: 1.2rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  margin-top: 5px;
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.footer-mail:hover {
+  color: var(--primary-color);
+  text-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
+}
+
+/* --- COPYRIGHT BAR --- */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 25px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: #555;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr; /* Одна колонка на мобілці */
+    text-align: center;
+    gap: 50px;
+  }
+
+  /* На мобілці все центруємо */
+  .footer-logo, .footer-cta {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .social-item:hover {
+    transform: translateY(-3px); /* На мобілці краще вгору, а не вбік */
+  }
+}

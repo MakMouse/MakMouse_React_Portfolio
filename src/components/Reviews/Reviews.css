@@ -1,0 +1,213 @@
+/* =========================================
+   REVIEWS SECTION (ATMOSPHERIC)
+   ========================================= */
+
+/* 1. АТМОСФЕРНИЙ ФОН */
+section#reviews {
+  position: relative;
+  background-color: var(--bg-primary);
+  
+  /* ТЕКСТУРА: Крапки (Matrix Dots) */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px; /* Розмір сітки крапок */
+  
+  /* ЗАТЕМНЕННЯ: Робимо віньєтку, щоб крапки були тільки по центру */
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
+  
+  overflow: hidden;
+}
+
+/* ГЛОБАЛЬНЕ СВІТЛО (Прожектор по центру) */
+section#reviews::before {
+  content: "";
+  position: absolute;
+  top: -10%; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 69, 0, 0.15) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 2. СІТКА КАРТОК */
+/* --- ОНОВЛЕНА СІТКА І КАРТКИ --- */
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ОСНОВНИЙ СТАН КАРТКИ */
+.review-card {
+  /* 1. ФОН: Робимо світліший градієнт, щоб відділити від чорного фону */
+  background: linear-gradient(
+    180deg, 
+    rgba(40, 40, 40, 0.7) 0%,  /* Світліший верх */
+    rgba(20, 20, 20, 0.9) 100% /* Темніший низ */
+  );
+  
+  /* Сильне розмиття фону під карткою */
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  
+  /* 2. РАМКА: Більш чітка біла рамка */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  
+  /* 3. ТІНЬ: Базова тінь, щоб картка "летіла" навіть без наведення */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  min-height: 350px;
+}
+
+/* --- HOVER EFFECT (Прожектор зверху) --- */
+.review-card:hover {
+  transform: translateY(-10px); /* Підлітає вище */
+  
+  /* Рамка стає яскравішою, верх - кольоровим */
+  border-color: rgba(255, 255, 255, 0.3);
+  border-top-color: var(--primary-color);
+  
+  /* Складне освітлення */
+  box-shadow: 
+    /* Світло над карткою */
+    0 -10px 30px rgba(255, 69, 0, 0.2),
+    /* Внутрішнє світло зверху */
+    inset 0 10px 25px rgba(255, 69, 0, 0.1),
+    /* Глибока тінь знизу */
+    0 40px 70px rgba(0, 0, 0, 0.9);
+}
+
+/* --- ДЕТАЛІ --- */
+
+/* Лапка-цитата на фоні */
+.quote-icon-bg {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  font-size: 6rem;
+  /* Зробив її помітнішою (було 0.03, стало 0.08) */
+  color: rgba(255, 255, 255, 0.08); 
+  pointer-events: none;
+  transition: 0.5s;
+  z-index: 0;
+}
+
+.review-card:hover .quote-icon-bg {
+  color: rgba(255, 69, 0, 0.15); /* Стає помаранчевою при ховері */
+  transform: scale(1.1) rotate(-10deg);
+}
+
+/* Зірки */
+.stars {
+  color: #fbbf24; /* Золото */
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+  display: flex;
+  gap: 6px;
+  position: relative; z-index: 1;
+}
+
+/* Текст відгуку */
+.review-text {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #e0e0e0; /* Трохи світліший текст для контрасту */
+  font-style: italic;
+  margin-bottom: 35px;
+  position: relative; z-index: 1;
+}
+
+/* Блок клієнта */
+.client-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: auto;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Чіткіша лінія розділу */
+  position: relative; z-index: 1;
+}
+
+.client-avatar-placeholder {
+  width: 55px;
+  height: 55px;
+  background: rgba(255, 69, 0, 0.1); /* Фон кольору бренду */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  border: 2px solid rgba(255, 69, 0, 0.3);
+  box-shadow: 0 0 15px rgba(255, 69, 0, 0.2); /* Аватарка трохи світиться */
+}
+
+.client-info h4 {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.client-info span {
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+/* HOVER (Той самий Spotlight зверху) */
+.review-card:hover {
+  transform: translateY(-7px);
+  background: rgba(30, 30, 30, 0.9); /* Трохи світлішає */
+  border-color: rgba(255, 69, 0, 0.5);
+  border-top-color: var(--primary-color);
+  
+  box-shadow: 
+    0 -10px 30px rgba(255, 69, 0, 0.15),
+    inset 0 10px 20px rgba(255, 69, 0, 0.05),
+    0 30px 60px rgba(0, 0, 0, 0.9);
+}
+
+/* 4. ЗАГОЛОВОК (GRADIENT TEXT) */
+/* Тобі треба додати клас .gradient-text до h2 в Reviews.jsx, або використай цей селектор: */
+/* ОНОВЛЕНИЙ ЗАГОЛОВОК */
+section#reviews .section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 80px;
+  text-align: center;
+  
+  /* ТУТ БУЛА ЗМІНА КОЛЬОРІВ 👇 */
+  /* Робимо градієнт від твого брендового помаранчевого до світлого */
+  background: linear-gradient(to right, #ff4500 0%, #ff8c00 50%, #fff 100%);
+  
+  /* Цей рядок прибирає попередження в VS Code 👇 */
+  background-clip: text; 
+  -webkit-background-clip: text;
+  
+  -webkit-text-fill-color: transparent;
+  
+  /* Додаємо світіння навколо тексту */
+  text-shadow: 0 0 30px rgba(255, 69, 0, 0.3);
+  
+  position: relative;
+  z-index: 1;
+}
