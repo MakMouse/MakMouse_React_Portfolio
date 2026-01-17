@@ -13,56 +13,176 @@
   font-size: 2rem;
 }
 /* --- ВАРІАНТ 3: АТМОСФЕРНИЙ ПОТІК --- */
+/* --- ВАРІАНТ FIX: ЦЕНТРАЛІЗОВАНА ПРИВ'ЯЗКА --- */
 section#hero {
   position: relative;
   background: #020202;
   overflow: hidden;
-  min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center; /* Гарантуємо, що контент по центру */
 }
 
-/* Пляма 1: Твій помаранчевий */
-section#hero::before {
-  content: "";
-  position: absolute;
-  top: 20%; left: 20%;
-  width: 600px; height: 600px;
-  background: rgba(255, 69, 0, 0.2);
-  filter: blur(120px);
-  border-radius: 50%;
-  animation: blobMove1 25s infinite alternate ease-in-out;
-  z-index: 0;
-}
-
-/* Пляма 2: Глибокий додатковий колір (наприклад, темний індиго) для контрасту */
+/* Спільні налаштування */
+section#hero::before,
 section#hero::after {
   content: "";
   position: absolute;
-  bottom: 10%; right: 20%;
-  width: 500px; height: 500px;
-  background: rgba(40, 10, 80, 0.3); /* Темно-фіолетовий */
-  filter: blur(120px);
   border-radius: 50%;
-  animation: blobMove2 30s infinite alternate ease-in-out;
-  z-index: 0;
+  z-index: 0; /* Плями позаду */
+  pointer-events: none; /* Щоб не заважали клікати */
 }
 
-/* Анімації руху плям */
+/* Пляма 1: Помаранчева (Зліва від центру) */
+section#hero::before {
+  /* 👇 ГОЛОВНИЙ ФІКС */
+  left: 50%;       /* Ставимо точку відліку в центр екрану */
+  top: 50%;        /* Вертикальний центр */
+  
+  /* Зміщуємо вліво на 500px від центру і вгору */
+  margin-left: -650px; 
+  margin-top: -300px; 
+
+  width: 600px;    /* Повертаємо фіксований розмір, він стабільніший при зумі */
+  height: 600px;
+  
+  background: rgba(255, 69, 0, 0.22);
+  filter: blur(100px);
+  animation: blobMove1 20s infinite alternate ease-in-out;
+}
+
+/* Пляма 2: Фіолетова (Справа від центру) */
+section#hero::after {
+  /* 👇 ГОЛОВНИЙ ФІКС */
+  left: 50%;
+  top: 50%;
+
+  /* Зміщуємо вправо на 200px від центру і вниз */
+  margin-left: 150px; 
+  margin-top: 100px;
+
+  width: 500px; 
+  height: 500px;
+  
+  background: rgba(40, 10, 80, 0.35);
+  filter: blur(100px);
+  animation: blobMove2 25s infinite alternate ease-in-out;
+}
+
+/* Анімація залишається, але робимо її м'якшою, щоб плями не тікали далеко */
 @keyframes blobMove1 {
   0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(200px, -100px) scale(1.2); }
-  100% { transform: translate(-100px, 100px) scale(0.9); }
+  50% { transform: translate(50px, -40px) scale(1.1); } /* Менша амплітуда руху */
+  100% { transform: translate(-30px, 40px) scale(0.9); }
 }
 
 @keyframes blobMove2 {
   0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-200px, 50px) scale(1.1); }
-  100% { transform: translate(150px, -150px) scale(1.3); }
+  50% { transform: translate(-50px, 30px) scale(1.1); }
+  100% { transform: translate(40px, -40px) scale(1.2); }
 }
 
-/* Важливо: Контент має бути поверх плям */
+/* Контейнер повинен бути чітко зверху */
 section#hero .container {
   position: relative;
   z-index: 2;
+}
+
+/* =========================================
+   HERO MOBILE: THE BLOCK METHOD (NO FLEX BUGS)
+   ========================================= */
+@media screen and (max-width: 768px) {
+
+  /* 1. СЕКЦІЯ */
+  section#hero {
+    display: block !important; /* Вимикаємо flex у секції, щоб не плутав карти */
+    padding: 110px 20px 50px 20px !important; /* Відступи задаємо тут */
+    height: auto !important;
+    min-height: 100vh !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. ЗАГОЛОВОК */
+  #hero .top-title-bar {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto 30px auto !important; /* Центруємо блок */
+    text-align: center !important;
+  }
+  
+  #hero .top-title-bar h1 {
+    font-size: 1.8rem !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+  }
+
+  /* 3. КОНТЕЙНЕР - ГОЛОВНИЙ ВИНУВАТЕЦЬ */
+  #hero .container {
+    display: block !important; /* Ніякого flex, просто блок */
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important; /* Центруємо сам контейнер */
+    padding: 0 !important;     /* Скидаємо паддінги */
+  }
+
+  /* 4. ФОТО-БЛОК (POLISHED VERSION) */
+  #hero .image-box {
+    display: block !important;
+    width: 100% !important;
+    /* 👇 ПРИБРАЛИ max-width: 400px. Тепер ширина така ж, як у тексту */
+    max-width: none !important; 
+    
+    margin: 0 auto 40px auto !important; /* Трохи більше повітря знизу */
+    padding: 0 !important;
+    
+    /* 👇 ДОДАЄМО ЛОСК: Тінь та скруглення */
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5) !important; /* Глибока, м'яка тінь */
+    border-radius: 24px !important; /* Сучасні скруглені кути */
+    overflow: hidden; /* Щоб картинка не вилазила за скруглені кути блоку */
+  }
+
+  #hero .image-box img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    /* border-radius   тут вже не треба, бо він є у батьківського блоку */
+    object-fit: cover !important;
+  }
+
+  /* 5. ТЕКСТОВИЙ БЛОК */
+  #hero .text-block {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    
+    /* Лінія зліва */
+    border-left: 4px solid #FF4500 !important;
+    padding-left: 20px !important;
+    box-sizing: border-box !important;
+    text-align: left !important;
+  }
+
+  #hero .text-block h2 {
+    font-size: 1.8rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 15px !important;
+  }
+
+  #hero .text-block p {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 25px !important;
+  }
+
+  /* 6. КНОПКА */
+  #hero .cta-button {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    padding: 16px 0 !important;
+    margin-top: 20px !important;
+    box-sizing: border-box !important;
+  }
 }

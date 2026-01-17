@@ -164,15 +164,10 @@ section:has(.content-row) {
   background: var(--primary-hover);
 }
 
-/* --- MEDIA QUERIES (Global Layout) --- */
-@media (max-width: 768px) {
-  .content-row, .content-row.reverse { flex-direction: column !important; text-align: center; gap: 30px; }
-  .image-box img { max-width: 100%; order: 1; }
-  .text-block { order: 2; padding: 30px; text-align: center; }
-  .text-block h2, .text-block h3 { text-align: center; }
-  /* Цей фікс для #about краще залишити тут */
-  #about .content-row { flex-direction: column-reverse !important; }
-}
+/* =========================================
+   MOBILE ADAPTATION (MAX-WIDTH: 768px)
+   ========================================= */
+
 /* --- ЧИСТИЙ ВАУ-ЕФЕКТ (JS CALCULATION) --- */
 @media (min-width: 1024px) {
   
@@ -180,66 +175,41 @@ section:has(.content-row) {
     scroll-behavior: smooth;
   }
 
-  /* Скидаємо все лишнє для ID, щоб точно спрацювало */
-  section, section#hero, section#about, section#skills, section#portfolio, section#reviews {
+/* 1. БАЗА ДЛЯ ВСІХ (Hero, About, Contact...) */
+  section {
+    /* Фікс для 4K: не менше екрану, але не більше 1080px */
+    min-height: min(var(--vh, 100vh), 1080px);
+    max-height: 1080px; /* <--- ОСЬ ВОНО! Тримаємо стелю, щоб не плило */
     
-    /* 1. ВИСОТА: Беремо те, що наміряв JS. 
-       Якщо JS не спрацює (рідкість), буде 100vh. */
-    height: var(--vh, 100vh) !important;
-    scroll-margin-top: 70px !important;
-    /* 2. Ніяких лімітів max-height. 
-       Ми довіряємо розміру екрана користувача. 
-       Який екран - така і секція. */
-    max-height: none !important;
-    
-    /* 3. Мінімалка (щоб текст не сплющило на дуже низьких вікнах) */
-    min-height: 700px !important;
-
-    /* 4. Центрування */
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    
-    /* Відступи під хедер */
-    padding-top: 80px !important;
-    padding-bottom: 20px !important;
+    /* Центрування */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden; 
     box-sizing: border-box;
     
-    /* Обрізаємо все, що вилазить, щоб не було скролбарів всередині секції */
-    overflow: hidden; 
+    /* Відступ під хедер для всіх */
+    padding-top: var(--nav-height, 80px);
+    padding-bottom: 20px;
   }
-  /* 👇 ДОДАЙ ЦЕ ОКРЕМО ДЛЯ HERO 👇 */
-section#hero {
-    /* 1. Відштовхуємо секцію вниз на висоту хедера (щоб не ховалася під ним) */
 
-    /* 2. Робимо висоту рівно: "Весь екран МІНУС хедер" */
-    height: calc(var(--vh, 100vh) - var(--nav-height)) !important;
-    
-    /* 3. Прибираємо внутрішній відступ, бо ми вже зробили відступ зовні (margin) */
-    padding-top: 0 !important; 
-    
-    /* Центруємо контент */
-    justify-content: center !important;
-    
-    /* На всяк випадок */
-    min-height: 600px !important;
-}
+  /* 2. HERO - ОСОБЛИВИЙ */
+  section#hero {
+    /* Hero має бути на весь екран МІНУС хедер */
+    min-height: min(calc(var(--vh, 100vh) - var(--nav-height, 80px)), 1000px);
+    max-height: 1000 px;
+    /* У Hero немає відступу зверху, бо ми його вже відняли у height */
+    padding-top: 0; 
+  }
 
-section:not(#hero) {
-    /* МАГІЯ ТУТ:
-       Ми додаємо внутрішній відступ зверху на висоту хедера.
-       Коли секція прилипає до верху екрана, Хедер лягає поверх цього відступу.
-       
-       Результат: Контент центрується у просторі, що залишився (var(--vh) - 80px),
-       і виглядає ідеально по центру "видимої" зони. */
-
-    padding-top: var(--nav-height) !important;
-    
-    /* Додаємо трохи знизу, щоб було симетрично */
-    padding-bottom: 20px !important; 
-    
-    /* Тут scroll-margin не треба, бо padding-top вже виконує роль буфера */
-    scroll-margin-top: 0 !important; 
+  /* 3. ДОВГІ СЕКЦІЇ (Проекти, Досвід) - ЗНІМАЄМО КАЙДАНИ */
+  section#projects, 
+  section#experience {
+    height: auto;        /* Висота залежить від карток */
+    min-height: 100vh;   /* Мінімум екран */
+    max-height: none;    /* <--- ТУТ МОЖНА! Хай росте хоч до 5000px */
+    padding-top: 120px;  /* Більше повітря зверху */
+    overflow: visible;   /* Щоб тіні не обрізало */
   }
 
   header.main-header {

@@ -1,19 +1,21 @@
 /* =========================================
-   ABOUT SECTION: DYNAMIC TECH FLOW
+   ABOUT SECTION: FIXED CENTER GLOW
    ========================================= */
 
 /* 1. БАЗОВИЙ ФОН */
 #about {
   position: relative;
-  background-color: #050505; /* Той самий глибокий чорний, що і в Hero */
-  /* Додаємо дуже легкий вертикальний градієнт для глибини */
+  background-color: #050505;
   background-image: linear-gradient(to bottom, #050505 0%, #0a0a0a 100%);
   overflow: hidden;
-  /* Твої стандартні відступи */
   padding: 100px 0;
+  /* Додаємо flex, щоб центрування працювало ідеально, хоча для абсолютної позиції це не критично, але корисно */
+  display: flex;
+  justify-content: center;
+  align-items: center; 
 }
 
-/* 2. ТЕХНІЧНА СІТКА (Трохи дрібніша для різноманіття) */
+/* 2. ТЕХНІЧНА СІТКА */
 #about::before {
   content: "";
   position: absolute;
@@ -23,9 +25,8 @@
     linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
   
-  background-size: 40px 40px; /* Трохи менша клітинка, ніж в Hero */
+  background-size: 40px 40px;
   
-  /* М'яка маска: сітка видна в центрі і зникає до країв */
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 95%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 95%);
   
@@ -33,53 +34,71 @@
   pointer-events: none;
 }
 
-/* 3. ПОДВІЙНЕ СВІТЛО (The Flow) */
-/* Контейнер для світла розтягуємо на всю секцію */
+/* 3. ПРАВИЛЬНЕ ПОЗИЦІОНУВАННЯ СВІТЛА (The Fix) */
+
 .about-glow {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0; left: 0; 
+  width: 100%; height: 100%;
   z-index: 0;
   pointer-events: none;
+  overflow: hidden; /* Обрізаємо все зайве */
 }
 
-/* Світло 1: Зліва зверху (біля тексту) - м'якше */
-.about-glow::before {
-  content: "";
-  position: absolute;
-  top: 10%; left: -10%;
-  width: 600px; height: 600px;
-  
-  background: radial-gradient(circle, rgba(255, 69, 0, 0.08) 0%, transparent 60%);
-  filter: blur(80px);
-  opacity: 0.8;
-  
-  /* Повільний дрейф */
-  animation: flowDrift1 15s infinite alternate ease-in-out;
-}
-
-/* Світло 2: Справа знизу (біля фото) - трохи яскравіше */
+/* Спільні налаштування для обох плям */
+.about-glow::before,
 .about-glow::after {
   content: "";
   position: absolute;
-  bottom: 0%; right: -5%;
-  width: 700px; height: 700px;
+  border-radius: 50%;
   
-  background: radial-gradient(circle, rgba(255, 69, 0, 0.12) 0%, transparent 60%);
+  /* 👇 ГОЛОВНИЙ ФІКС: Прив'язка до центру */
+  left: 50%;
+  top: 50%;
+}
+
+/* Світло 1: Зліва зверху (біля тексту "About me") */
+.about-glow::before {
+  /* Розмір фіксуємо в PX, щоб він був стабільним при зумі */
+  width: 600px; 
+  height: 600px;
+  
+  /* Зміщення від центру: */
+  margin-left: -750px; /* Сильно вліво */
+  margin-top: -350px;  /* Трохи вгору */
+  
+  background: radial-gradient(circle, rgba(255, 69, 0, 0.09) 0%, transparent 70%);
+  filter: blur(80px);
+  opacity: 0.8;
+  
+  animation: flowDrift1 15s infinite alternate ease-in-out;
+}
+
+/* Світло 2: Справа знизу (під фотографією) */
+.about-glow::after {
+  width: 700px; 
+  height: 700px;
+  
+  /* Зміщення від центру: */
+  margin-left: 150px;  /* Вправо */
+  margin-top: -100px;  /* Трохи вгору, щоб підсвітити фото */
+  
+  background: radial-gradient(circle, rgba(255, 69, 0, 0.12) 0%, transparent 70%);
   filter: blur(100px);
   opacity: 0.9;
   
   animation: flowDrift2 12s infinite alternate ease-in-out;
 }
 
-/* Анімації для плавного руху світла */
+/* Анімації (адаптовані під малий хід, щоб не тікали) */
 @keyframes flowDrift1 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(50px, 30px) scale(1.1); }
+  100% { transform: translate(40px, 20px) scale(1.1); }
 }
 
 @keyframes flowDrift2 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-60px, -40px) scale(1.05); }
+  100% { transform: translate(-40px, -30px) scale(1.05); }
 }
 
 /* ВАЖЛИВО: Контент має бути над фоном */
@@ -87,19 +106,17 @@
   position: relative;
   z-index: 2;
 }
-/* --- STYLE 2: CLEAN DOCUMENTATION --- */
+
+/* --- STYLE 2: CLEAN DOCUMENTATION (Без змін) --- */
 .text-block {
-  background: transparent; /* Прибираємо фон */
+  background: transparent;
   border: none;
   box-shadow: none;
-  padding: 20px 0 20px 40px; /* Відступ зліва від лінії */
-  
-  /* Вертикальна лінія зліва */
+  padding: 20px 0 20px 40px;
   border-left: 4px solid var(--primary-color); 
   position: relative;
 }
 
-/* Легкий градієнт від лінії вправо (опціонально) */
 .text-block::after {
   content: "";
   position: absolute;
@@ -117,7 +134,7 @@
 }
 
 .text-block h3 {
-  font-size: 2.5rem; /* Більший шрифт */
+  font-size: 2.5rem;
   margin-bottom: 30px;
 }
 
@@ -127,11 +144,111 @@
 }
 
 .about-image-box img {
-  /* Робимо фото чорно-білим, поки не наведеш */
   filter: grayscale(100%);
   transition: 0.5s;
 }
 
 .about-image-box:hover img {
   filter: grayscale(0%);
+}
+
+/* =========================================
+   ABOUT MOBILE: HERO TWIN STYLE (FIXED)
+   ========================================= */
+@media screen and (max-width: 768px) {
+
+  /* 1. СЕКЦІЯ (БАЗА) */
+  section#about {
+    display: block !important;
+    padding: 60px 24px !important; /* Ті ж самі 24px відступу, що і в Hero */
+    height: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. ЗАГОЛОВОК "About me" */
+  #about .top-title-bar {
+    text-align: center !important;
+    margin-bottom: 40px !important;
+    width: 100% !important;
+  }
+  
+  #about .top-title-bar h2 {
+    font-size: 2rem !important;
+    margin: 0 !important;
+  }
+
+  /* 3. КОНТЕЙНЕР (Скидаємо Flex і Reverse) */
+  #about .container {
+    display: flex !important;
+    flex-direction: column !important; /* Тільки стовпчик */
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* 4. ФОТО (Стиль картки 1в1 як Hero) */
+  #about .image-box {
+    display: block !important;
+    width: 100% !important;
+    
+    
+    /* Відступи */
+    margin: 0 auto 30px auto !important; 
+    padding: 0 !important;
+    
+    /* Декор */
+    box-shadow: 0 15px 35px -5px rgba(0,0,0,0.4) !important;
+    border-radius: 20px !important;
+    overflow: hidden;
+  }
+
+  #about .image-box img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    filter: grayscale(0%) !important; /* На мобілці хай зразу буде кольорове */
+  }
+
+  /* 5. ТЕКСТОВИЙ БЛОК (Виправляємо відступ зліва) */
+  #about .text-block {
+    width: 100% !important;
+    max-width: 100% !important;
+    
+    /* 👇 ВАЖЛИВО: Зменшуємо лівий відступ з 40px до 20px */
+    padding-left: 20px !important;
+    
+    /* Зберігаємо твою помаранчеву лінію */
+    border-left: 4px solid var(--primary-color) !important;
+    background: transparent !important;
+    text-align: left !important;
+  }
+
+  #about .text-block h3 {
+    font-size: 1.8rem !important;
+    margin-bottom: 20px !important;
+    line-height: 1.2 !important;
+  }
+
+  #about .text-block p {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
+    color: #ccc !important;
+  }
+
+  #about .badge {
+    display: block !important;
+    margin-bottom: 10px !important;
+    text-align: left !important;
+  }
+
+  /* 6. КНОПКА (Робимо зручною для пальця) */
+  #about .cta-button {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    padding: 14px 0 !important;
+    margin-top: 10px !important;
+    border: 1px solid var(--primary-color); /* Щоб було видно границі */
+  }
 }
