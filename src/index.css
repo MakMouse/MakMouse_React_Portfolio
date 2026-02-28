@@ -1,0 +1,95 @@
+/* ============================================
+   DESIGN TOKENS — Single source of truth
+   All raw values live here, nowhere else.
+   ============================================ */
+
+:root {
+
+  /* ==========================================
+                      MAIN
+  ========================================== */
+  --bg-main: #0a0a0a;
+
+  /* ==========================================
+                     HEADER
+  ========================================== */
+
+  /* --- Brand --- */
+  --primary-color:        #FF4500;
+  --primary-glow:         rgba(255, 69, 0, 0.6);
+
+  /* --- Layout --- */
+  --nav-height:           80px;
+  --container-max:        1400px;
+  --container-padding-lg: 30px;
+
+  /* --- Z-index scale --- */
+  --z-header:             1000;
+  --z-header-bar:         1001;
+  --z-mobile-menu:        1005;
+
+  /* --- Colors --- */
+  --color-white:          #ffffff;
+  --color-text-muted:     #c5c5c5;
+  --border-color:         rgba(255, 255, 255, 0.08);
+
+  /* --- Header surface --- */
+  --header-bg:            rgba(30, 30, 30, 0.65);
+  --header-blur:          12px;
+
+  /* --- Logo --- */
+  --logo-size:            1.8rem;
+  --logo-size-mobile:     1.6rem;
+
+  /* --- Nav links --- */
+  --nav-gap:              25px;
+  --nav-link-opacity:     0.8;
+  --nav-underline-height: 2px;
+
+  /* --- Mobile nav button --- */
+  --mobile-btn-gap:         8px;
+  --mobile-btn-radius:      2px;
+  --mobile-btn-padding-top: 4px;
+
+  /* --- Mobile dropdown menu --- */
+  --mobile-menu-width:      50%;
+  --mobile-menu-max-width:  180px;
+  --mobile-menu-item-gap:   30px;
+  --mobile-menu-max-height: 400px;
+  --mobile-menu-pt:         30px;
+  --mobile-menu-pb:         40px;
+  --mobile-link-size:       1.5rem;
+
+  /* --- Loading bar --- */
+  --loading-bar-height:   3px;
+
+  /* --- Shadows --- */
+  --glow-spread:          10px;
+
+  /* --- Transitions --- */
+  --transition-fast:      0.3s ease;
+  --transition-base:      0.4s ease-in-out;
+  --transition-smooth:    0.8s cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* ==========================================
+     BREAKPOINTS — reference only
+     CSS custom properties cannot be used
+     inside @media queries directly.
+     1024px → tablet  |  768px → mobile
+  ========================================== */
+}
+
+/* --- Reset --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: clip; /* single rule — clip is preferred over hidden for layouts */
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--bg-main);
+  color: var(--color-white);
+}
