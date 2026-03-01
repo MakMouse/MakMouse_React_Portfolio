@@ -1,0 +1,202 @@
+/* ============================================
+   Footer — all values pulled from design tokens
+   No magic numbers. No raw colours.
+   Duplicate @media blocks merged into one.
+   ============================================ */
+
+.main-footer {
+  background: var(--footer-bg);
+  padding: var(--footer-pad-top) 0 var(--footer-pad-bottom);
+  position: relative;
+  z-index: var(--footer-z);
+}
+
+/* Top accent line */
+.main-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent           0%,
+    var(--primary-color)  50%,
+    transparent           100%
+  );
+  opacity: var(--footer-line-opacity);
+  box-shadow: var(--footer-line-shadow);
+}
+
+/* ============================================
+   Content grid
+   ============================================ */
+
+.footer-content {
+  display: grid;
+  grid-template-columns: var(--footer-grid-cols);
+  gap: var(--footer-grid-gap);
+  align-items: start;
+  margin-bottom: var(--footer-content-mb);
+}
+
+.footer-content h4 {
+  font-size: var(--footer-h4-size);
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: var(--footer-h4-spacing);
+  margin-bottom: var(--footer-h4-mb);
+}
+
+/* ============================================
+   Logo column
+   ============================================ */
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-logo h3 {
+  font-size: var(--footer-logo-size);
+  color: var(--color-white);
+  margin-bottom: var(--footer-logo-mb);
+  font-weight: 800;
+}
+
+.footer-logo span {
+  color: var(--primary-color);
+}
+
+.footer-logo p {
+  color: var(--footer-tagline-color);
+  font-size: var(--footer-tagline-size);
+  line-height: var(--line-height-body);
+  max-width: var(--footer-tagline-max-width);
+  margin: 0;
+}
+
+/* ============================================
+   Socials column
+   ============================================ */
+
+.footer-socials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: row;
+  gap: var(--social-gap);
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.social-item {
+  display: flex;
+  align-items: center;
+  gap: var(--social-item-gap);
+  color: var(--social-item-color);
+  text-decoration: none;
+  font-size: var(--social-item-size);
+  transition: all var(--transition-fast);
+  padding: var(--social-item-padding);
+  border-radius: var(--social-item-radius);
+  background: var(--social-item-bg);
+  border: 1px solid var(--social-item-border);
+}
+
+.social-item:hover {
+  background: var(--social-item-hover-bg);
+  border-color: var(--primary-color);
+  color: var(--color-white);
+  transform: var(--social-item-hover-lift);
+}
+
+.social-item .icon {
+  color: var(--primary-color);
+  font-size: var(--social-icon-size);
+  display: flex;
+  transition: var(--transition-fast);
+}
+
+.social-item:hover .icon {
+  filter: drop-shadow(0 0 var(--social-icon-glow) var(--primary-color));
+}
+
+/* ============================================
+   CTA column
+   ============================================ */
+
+.footer-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.footer-mail {
+  font-size: var(--footer-mail-size);
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 700;
+  margin-top: var(--footer-mail-mt);
+  transition: var(--transition-fast);
+  position: relative;
+}
+
+.footer-mail:hover {
+  color: var(--primary-color);
+  text-shadow: 0 0 var(--footer-mail-glow-spread) var(--footer-mail-glow);
+}
+
+/* ============================================
+   Bottom bar
+   ============================================ */
+
+.footer-bottom {
+  border-top: 1px solid var(--footer-bottom-border);
+  padding-top: var(--footer-bottom-pt);
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: var(--footer-bottom-color);
+  font-size: var(--footer-bottom-size);
+  letter-spacing: var(--footer-bottom-spacing);
+}
+
+/* ============================================
+   Responsive — single merged breakpoint
+   (1023px and 768px blocks were identical
+    except for social-links flex-wrap)
+   ============================================ */
+
+@media (max-width: 1023px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--footer-grid-gap-tablet);
+  }
+
+  .footer-logo,
+  .footer-cta {
+    align-items: center;
+    text-align: center;
+  }
+
+  .social-item:hover {
+    transform: var(--social-item-hover-lift);
+  }
+}
+
+/* Wrap social icons on smallest screens */
+@media (max-width: 768px) {
+  .social-links {
+    flex-wrap: wrap;
+  }
+}

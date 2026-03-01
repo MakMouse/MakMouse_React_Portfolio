@@ -1,0 +1,197 @@
+/* ============================================
+   Skills — all values pulled from design tokens
+   No magic numbers. No raw colours.
+   ============================================ */
+
+#skills {
+  /* --- Grid background (scoped) --- */
+  --skills-grid-color:   rgba(255, 255, 255, 0.03);
+
+  /* --- Base layout — padding drives height, no viewport tricks --- */
+  padding-top: var(--skills-pad-v);
+  padding-bottom: var(--skills-pad-v);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  background-color: var(--bg-primary);
+  background-image:
+    linear-gradient(var(--skills-grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--skills-grid-color) 1px, transparent 1px);
+  background-size: var(--skills-grid-size) var(--skills-grid-size);
+}
+
+/* Radial vignette mask over the grid */
+#skills::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent 20%, var(--skills-grid-vignette) 90%);
+  pointer-events: none;
+  z-index: var(--z-bg);
+}
+
+/* ============================================
+   Skills grid
+   ============================================ */
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--skills-grid-gap);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   Skill card
+   ============================================ */
+
+.skill-card {
+  background: linear-gradient(
+    180deg,
+    var(--card-bg-top)    0%,
+    var(--card-bg-bottom) 100%
+  );
+  backdrop-filter: blur(var(--card-blur));
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  width: var(--card-width);
+  min-width: var(--card-min-width);
+  max-width: var(--card-max-width);
+  padding: var(--card-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: var(--card-min-height);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card:hover {
+  transform: var(--card-hover-lift);
+  border-color: var(--card-hover-border);
+  border-top-color: var(--primary-color);
+  box-shadow: var(--card-hover-shadow);
+}
+
+/* --- Card heading --- */
+
+.skill-card h3 {
+  margin-bottom: var(--card-h3-mb);
+  font-size: var(--card-h3-size);
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: var(--card-h3-spacing);
+  text-align: center;
+  border-bottom: 2px solid var(--card-h3-border);
+  padding-bottom: var(--card-h3-pb);
+  transition: var(--transition-fast);
+}
+
+.skill-card:hover h3 {
+  color: var(--color-white);
+  border-bottom-color: var(--primary-color);
+  text-shadow: 0 0 var(--card-h3-glow-spread) var(--card-h3-glow);
+}
+
+/* ============================================
+   Tech tags
+   ============================================ */
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--tag-gap);
+  justify-content: center;
+  width: 100%;
+}
+
+.tech-tag {
+  display: flex;
+  align-items: center;
+  gap: var(--tag-icon-gap);
+  padding: var(--tag-padding);
+  background: var(--tag-bg);
+  border: 1px solid var(--tag-border);
+  border-radius: var(--tag-radius);
+  color: var(--tag-color);
+  font-size: var(--tag-size);
+  font-weight: 500;
+  transition: var(--transition-fast);
+  cursor: default;
+}
+
+.tech-tag:hover {
+  background: var(--tag-hover-bg);
+  border-color: var(--primary-color);
+  color: var(--color-white);
+  transform: var(--tag-hover-lift);
+  box-shadow: var(--tag-hover-shadow);
+}
+
+.tech-tag .tag-icon {
+  font-size: var(--tag-icon-size);
+  color: var(--tag-icon-color);
+  transition: var(--transition-fast);
+}
+
+.tech-tag:hover .tag-icon {
+  color: var(--color-white);
+  filter: drop-shadow(0 0 var(--tag-icon-glow) var(--primary-color));
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+/* Tablet two-column range: cards already flex-wrap, just tighten padding */
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  #skills {
+    display: block;
+    height: auto;
+    padding: var(--skills-pad-v-tablet) var(--skills-pad-sides-tablet);
+  }
+
+  .skills-grid {
+    display: grid;
+    place-content: center;
+  }
+
+  .skill-card {
+    width: var(--card-width);
+    min-width: var(--card-min-width-tablet);
+    padding: var(--card-padding);
+    min-height: var(--card-min-height);
+  }
+}
+
+/* Mobile single-column */
+@media screen and (max-width: 768px) {
+  #skills {
+    display: block;
+    height: auto;
+    padding: var(--skills-pad-v-tablet) var(--skills-pad-sides-tablet);
+  }
+
+  .skills-grid {
+    display: grid;
+    place-content: center;
+    width: 100%;
+  }
+
+  .skill-card {
+    width: var(--card-width-mobile);      /* 100% — fills available width */
+    min-width: var(--card-min-width-mobile); /* 0 — removes floor that caused overflow */
+    padding: var(--card-padding-mobile);
+    min-height: var(--card-min-height);
+  }
+}

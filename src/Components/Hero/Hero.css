@@ -1,0 +1,118 @@
+/* ============================================
+   Hero — component-scoped tokens + animations
+   Global tokens come from index.css
+   ============================================ */
+
+#hero {
+
+  /* --- Blob FX — scoped to this component --- */
+  --hero-blob-blur:    100px;
+
+  --blob1-size:        600px;
+  --blob1-x:          -650px;
+  --blob1-y:          -300px;
+  --blob1-color:       rgba(255, 69, 0, 0.22);
+  --blob1-duration:    20s;
+
+  --blob2-size:        500px;
+  --blob2-x:           150px;
+  --blob2-y:           100px;
+  --blob2-color:       rgba(40, 10, 80, 0.35);
+  --blob2-duration:    25s;
+
+  /* --- Hero layout — scoped padding tokens --- */
+  --hero-max-height:   1080px;
+  --hero-pad-v:        80px;  /* vertical breathing room — defines section height naturally */
+  --hero-pad-top:      30px;  /* tablet only: extra top breathing room */
+  --hero-pad-sides:    20px;
+  --hero-pad-bottom:   50px;
+
+  /* --- Base layout --- */
+  /* Padding drives height — section is content-tall, never artificially stretched */
+  padding-top: var(--hero-pad-v);
+  padding-bottom: var(--hero-pad-v);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  background: var(--bg-dark);
+}
+
+/* ============================================
+   Ambient blobs (::before / ::after)
+   ============================================ */
+
+#hero::before,
+#hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  left: 50%;
+  top: 50%;
+  filter: blur(var(--hero-blob-blur));
+  will-change: transform, filter;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+#hero::before {
+  margin-left: var(--blob1-x);
+  margin-top: var(--blob1-y);
+  width: var(--blob1-size);
+  height: var(--blob1-size);
+  background: var(--blob1-color);
+  animation: blobMove1 var(--blob1-duration) infinite alternate ease-in-out;
+}
+
+#hero::after {
+  margin-left: var(--blob2-x);
+  margin-top: var(--blob2-y);
+  width: var(--blob2-size);
+  height: var(--blob2-size);
+  background: var(--blob2-color);
+  animation: blobMove2 var(--blob2-duration) infinite alternate ease-in-out;
+}
+
+/* ============================================
+   Blob keyframes
+   ============================================ */
+
+@keyframes blobMove1 {
+  0%   { transform: translate3d(0,     0,    0) scale(1);   }
+  50%  { transform: translate3d(50px,  -40px, 0) scale(1.1); }
+  100% { transform: translate3d(-30px,  40px, 0) scale(0.9); }
+}
+
+@keyframes blobMove2 {
+  0%   { transform: translate3d(0,     0,    0) scale(1);   }
+  50%  { transform: translate3d(-50px,  30px, 0) scale(1.1); }
+  100% { transform: translate3d( 40px, -40px, 0) scale(1.2); }
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media screen and (max-width: 1023px) {
+  #hero {
+    display: block;
+    height: auto;
+    min-height: 100vh;
+    padding: var(--hero-pad-top)
+             var(--hero-pad-sides)
+             var(--hero-pad-bottom)
+             var(--hero-pad-sides);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #hero::before,
+  #hero::after {
+    display: none;
+  }
+}

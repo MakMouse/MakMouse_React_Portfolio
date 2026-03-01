@@ -1,0 +1,206 @@
+/* ============================================
+   Header — all values pulled from design tokens
+   No magic numbers. No raw colours.
+   ============================================ */
+
+/* --- Main header bar --- */
+.main-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background: var(--header-bg);
+  backdrop-filter: blur(var(--header-blur));
+  border-bottom: 1px solid var(--border-color);
+  z-index: var(--z-header);
+  display: flex;
+  align-items: center;
+}
+
+.main-header nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+/* Constrain nav content — logo & links stay centered, never bleed to edges */
+.main-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-lg);
+}
+
+/* --- Logo --- */
+.logo {
+  font-size: var(--logo-size);
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--color-white);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.logo span {
+  color: var(--primary-color);
+}
+
+/* --- Nav links (desktop) --- */
+.nav-links {
+  display: flex;
+  gap: var(--nav-gap);
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  opacity: var(--nav-link-opacity);
+  position: relative;
+  transition: color var(--transition-fast),
+              opacity var(--transition-fast);
+}
+
+.nav-links a:hover {
+  opacity: 1;
+  color: var(--primary-color);
+}
+
+.nav-links a.active {
+  opacity: 1;
+  color: var(--color-white);
+}
+
+/* Animated underline */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: var(--nav-underline-height);
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width var(--transition-fast);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a.active::after {
+  width: 100%;
+  box-shadow: 0 0 var(--glow-spread) var(--primary-glow);
+}
+
+/* --- Loading bar --- */
+.loading-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: var(--loading-bar-height);
+  background: var(--primary-color);
+  width: 100%;
+  z-index: var(--z-header-bar);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--transition-base);
+}
+
+.loading-bar.active {
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform var(--transition-smooth);
+}
+
+/* --- Mobile burger button --- */
+.mobile-nav {
+  display: none;
+  align-items: center;
+  line-height: 1;
+  width: auto;
+  height: var(--logo-size-mobile);
+  cursor: pointer;
+  z-index: var(--z-mobile-menu);
+  white-space: nowrap;
+  font-size: var(--logo-size-mobile);
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  color: var(--color-white);
+  padding: 0;
+  padding-top: var(--mobile-btn-padding-top);
+  border-radius: var(--mobile-btn-radius);
+  gap: var(--mobile-btn-gap);
+  transition: color var(--transition-fast);
+}
+
+.mobile-nav .arrow {
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.mobile-nav.active .arrow {
+  transform: rotate(-90deg);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media screen and (max-width: 1024px) {
+  .main-header .container {
+    max-width: var(--container-max);
+    margin: 0 var(--container-padding-lg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-header .container {
+    margin: 0;
+  }
+
+  .logo {
+    font-size: var(--logo-size-mobile);
+  }
+
+  .mobile-nav {
+    display: flex;
+  }
+
+  /* --- Mobile dropdown --- */
+  .nav-links {
+    position: absolute;
+    top:210%;
+    right: 0;
+    width: var(--mobile-menu-width);
+    max-width: var(--mobile-menu-max-width);
+    background: var(--header-bg);
+    backdrop-filter: blur(var(--header-blur));
+    flex-direction: column;
+    align-items: center;
+    gap: var(--mobile-menu-item-gap);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: all var(--transition-base);
+  }
+
+  .nav-links.open {
+    max-height: var(--mobile-menu-max-height);
+    opacity: 1;
+    padding-top: var(--mobile-menu-pt);
+    padding-bottom: var(--mobile-menu-pb);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .nav-links a {
+    font-size: var(--mobile-link-size);
+    font-weight: 500;
+  }
+}

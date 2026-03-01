@@ -1,0 +1,698 @@
+/* ============================================
+   DESIGN TOKENS — Single source of truth
+   All raw values live here, nowhere else.
+   ============================================ */
+
+:root {
+
+  /* ==========================================
+                    BRAND
+  ========================================== */
+  --primary-color:          #FF4500;
+  --primary-hover:          #FF5714;
+  --primary-glow:           rgba(255, 69, 0, 0.6);   /* nav underline glow     */
+  --primary-tint-5:         rgba(255, 69, 0, 0.05);  /* text-block bg gradient */
+  --primary-tint-30:        rgba(255, 69, 0, 0.3);   /* cta button hover glow  */
+
+  /* ==========================================
+                    COLORS
+  ========================================== */
+  --color-white:            #ffffff;
+  --color-text-muted:       #c5c5c5;  /* nav links, header-level muted  */
+  --text-muted:             #aaaaaa;  /* body copy, paragraph text      */
+
+  --bg-main:                #0a0a0a;  /* page background                */
+  --bg-dark:                #020202;  /* deepest surfaces               */
+  --bg-light:               #0f0f1a;  /* subtle lighter surface — about section gradient end */
+  --card-bg:                rgba(255, 255, 255, 0.05);
+  --header-bg:              rgba(30, 30, 30, 0.65);
+  --border-color:           rgba(255, 255, 255, 0.1);
+  --shadow-image:           0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-cta-hover:       0 10px 20px var(--primary-tint-30);
+
+  /* ==========================================
+                   TYPOGRAPHY
+  ========================================== */
+  --font-body:              'Segoe UI', Arial, sans-serif;
+  --line-height-body:       1.6;
+
+  --logo-size:              1.8rem;
+  --logo-size-mobile:       1.6rem;
+  --mobile-link-size:       1.5rem;
+
+  /* ==========================================
+                    LAYOUT
+  ========================================== */
+  --nav-height:             80px;
+  --container-max:          1400px;   /* outer shell / header          */
+  --content-max:            1200px;   /* inner content rows            */
+  --container-padding-lg:   30px;
+  --container-padding-sm:   24px;
+  --container-padding-xs:   20px;
+
+  /* ==========================================
+                BORDER RADIUS
+  ========================================== */
+  --border-radius-sm:       8px;
+  --border-radius-md:       15px;
+  --border-radius-lg:       20px;
+
+  /* ==========================================
+              COMPONENT — HEADER
+  ========================================== */
+  --header-blur:            12px;
+
+  /* --- Nav links --- */
+  --nav-gap:                25px;
+  --nav-link-opacity:       0.8;
+  --nav-underline-height:   2px;
+
+  /* --- Loading bar --- */
+  --loading-bar-height:     3px;
+
+  /* --- Logo --- */
+  --logo-size:              1.8rem;
+  --logo-size-mobile:       1.6rem;
+
+  /* --- Mobile nav button --- */
+  --mobile-btn-gap:         8px;
+  --mobile-btn-radius:      2px;
+  --mobile-btn-padding-top: 4px;
+
+  /* --- Mobile dropdown menu --- */
+  --mobile-menu-width:      50%;
+  --mobile-menu-max-width:  180px;
+  --mobile-menu-item-gap:   30px;
+  --mobile-menu-max-height: 400px;
+  --mobile-menu-pt:         30px;
+  --mobile-menu-pb:         40px;
+
+  /* ==========================================
+       COMPONENT — ABOUT SECTION
+  ========================================== */
+  --about-pad-v:            80px;  /* vertical padding — content-driven height */
+  --about-pad-v-tablet:     60px;  /* tablet: tighter */
+  --about-pad-sides-tablet: 24px;
+
+  /* ==========================================
+       COMPONENT — SKILLS SECTION
+  ========================================== */
+  --bg-primary:                  var(--bg-dark);   /* alias used in Skills */
+
+  /* --- Section padding --- */
+  --skills-pad-v:                80px;
+  --skills-pad-v-tablet:         50px;
+  --skills-pad-sides-tablet:     20px;
+
+  /* --- Grid background --- */
+  --skills-grid-color:           rgba(255, 255, 255, 0.03);
+  --skills-grid-size:            40px;
+  --skills-grid-vignette:        rgba(10, 10, 10, 0.95);  /* radial mask end color */
+
+  /* --- Skills grid layout --- */
+  --skills-grid-gap:             30px;
+
+  /* --- Skill card --- */
+  --card-bg-top:                 rgba(25, 25, 25, 0.9);
+  --card-bg-bottom:              rgba(10, 10, 10, 0.95);
+  --card-blur:                   20px;
+  --card-border:                 rgba(255, 255, 255, 0.08);
+  --card-radius:                 24px;
+  --card-width:                  40vw;
+  --card-min-width:              300px;
+  --card-width-mobile:           100%;   /* fill container — no overflow, no squish */
+  --card-min-width-mobile:       0px;    /* reset floor so 100% takes over        */
+  --card-max-width:              600px;
+  --card-min-width-tablet:       650px;
+  --card-padding:                50px 40px;
+  --card-padding-mobile:         20px 10px;
+  --card-min-height:             240px;
+  --card-hover-lift:             translateY(-7px);
+  --card-hover-border:           rgba(255, 69, 0, 0.5);
+  --card-hover-shadow:           0 -10px 25px rgba(255, 69, 0, 0.3),
+                                 inset 0 10px 20px rgba(255, 69, 0, 0.2),
+                                 0 30px 50px rgba(0, 0, 0, 0.8);
+
+  /* --- Card heading --- */
+  --card-h3-size:                1.8rem;
+  --card-h3-spacing:             2px;
+  --card-h3-mb:                  40px;
+  --card-h3-pb:                  15px;
+  --card-h3-border:              rgba(255, 255, 255, 0.1);
+  --card-h3-glow:                rgba(255, 69, 0, 0.5);
+  --card-h3-glow-spread:         15px;
+
+  /* --- Tech tags --- */
+  --tag-gap:                     16px;
+  --tag-icon-gap:                10px;
+  --tag-padding:                 12px 20px;
+  --tag-bg:                      rgba(255, 255, 255, 0.03);
+  --tag-border:                  rgba(255, 255, 255, 0.05);
+  --tag-radius:                  50px;
+  --tag-color:                   #bbb;
+  --tag-size:                    1rem;
+  --tag-hover-bg:                rgba(255, 69, 0, 0.1);
+  --tag-hover-lift:              translateY(-2px);
+  --tag-hover-shadow:            0 5px 15px rgba(0, 0, 0, 0.3);
+  --tag-icon-size:               1.1rem;
+  --tag-icon-color:              #777;
+  --tag-icon-glow:               3px;
+
+  /* ==========================================
+       COMPONENT — REVIEWS SECTION
+  ========================================== */
+
+  /* --- Section padding --- */
+  --reviews-pad-v:              80px;
+  --reviews-pad-v-tablet:       50px;
+  --reviews-pad-sides-tablet:   20px;
+
+  /* --- Dot grid background --- */
+  --reviews-dot-color:          rgba(255, 255, 255, 0.1);
+  --reviews-dot-size:           30px;
+
+  /* --- Glow orb above section --- */
+  --reviews-glow-size:          600px;
+  --reviews-glow-top:          -10%;
+  --reviews-glow-color:         rgba(255, 69, 0, 0.15);
+  --reviews-glow-blur:          80px;
+
+  /* --- Section title gradient --- */
+  --reviews-title-size:         3rem;
+  --reviews-title-weight:       800;
+  --reviews-title-grad-start:   #ff4500;
+  --reviews-title-grad-mid:     #ff8c00;
+  --reviews-title-glow:         rgba(255, 69, 0, 0.3);
+  --reviews-title-glow-spread:  30px;
+
+  /* --- Reviews grid --- */
+  --reviews-grid-gap:           30px;
+
+  /* --- Review card --- */
+  --rcard-bg-top:               rgba(40, 40, 40, 0.7);
+  --rcard-bg-bottom:            rgba(20, 20, 20, 0.9);
+  --rcard-blur:                 25px;
+  --rcard-border:               rgba(255, 255, 255, 0.15);
+  --rcard-radius:               24px;
+  --rcard-shadow:               0 20px 40px rgba(0, 0, 0, 0.5);
+  --rcard-width:                40vw;
+  --rcard-min-width:            300px;
+  --rcard-width-mobile:         100%;   /* fill container — no overflow, no squish */
+  --rcard-min-width-mobile:     0px;    /* reset floor so 100% takes over        */
+  --rcard-max-width:            600px;
+  --rcard-min-width-tablet:     650px;
+  --rcard-padding:              40px 30px;
+  --rcard-padding-tablet:       25px;
+  --rcard-min-height:           240px;
+  --rcard-min-height-mobile:    450px;
+  --rcard-hover-lift:           translateY(-7px);
+  --rcard-hover-border:         rgba(255, 69, 0, 0.5);
+  --rcard-hover-bg:             rgba(30, 30, 30, 0.9);
+  --rcard-hover-shadow:         0 -10px 30px rgba(255, 69, 0, 0.15),
+                                inset 0 10px 20px rgba(255, 69, 0, 0.05),
+                                0 30px 60px rgba(0, 0, 0, 0.9);
+
+  /* --- Quote icon --- */
+  --quote-top:                  25px;
+  --quote-right:                30px;
+  --quote-size:                 6rem;
+  --quote-color:                rgba(255, 255, 255, 0.08);
+  --quote-hover-color:          rgba(255, 69, 0, 0.15);
+  --quote-hover-transform:      scale(1.1) rotate(-10deg);
+
+  /* --- Stars --- */
+  --stars-color:                #fbbf24;
+  --stars-size:                 1.3rem;
+  --stars-mb:                   25px;
+  --stars-gap:                  6px;
+
+  /* --- Review text --- */
+  --review-text-size:           1.15rem;
+  --review-text-lh:             1.7;
+  --review-text-color:          #e0e0e0;
+  --review-text-mb:             35px;
+
+  /* --- Client info --- */
+  --client-gap:                 15px;
+  --client-pt:                  25px;
+  --client-border:              rgba(255, 255, 255, 0.1);
+  --client-name-size:           1.2rem;
+  --client-name-mb:             4px;
+  --client-role-size:           0.95rem;
+  --client-role-color:          #aaa;
+
+  /* --- Avatar --- */
+  --avatar-size:                55px;
+  --avatar-bg:                  rgba(255, 69, 0, 0.1);
+  --avatar-font-size:           1.6rem;
+  --avatar-border:              rgba(255, 69, 0, 0.3);
+  --avatar-shadow:              rgba(255, 69, 0, 0.2);
+  --avatar-glow-spread:         15px;
+
+  /* --- Toast notification --- */
+  --toast-bottom:               40px;
+  --toast-bg:                   #1a1a1a;
+  --toast-border:               #333;
+  --toast-radius:               8px;
+  --toast-shadow:               0 10px 30px rgba(0, 0, 0, 0.8);
+  --toast-z:                    9999;
+  --toast-transition:           all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --toast-content-gap:          12px;
+  --toast-padding:              14px 24px;
+  --toast-font-size:            15px;
+  --toast-icon-size:            18px;
+  --toast-bar-height:           4px;
+  --toast-duration:             1.5s;
+
+  /* ==========================================
+       COMPONENT — FOOTER
+  ========================================== */
+
+  /* --- Section layout --- */
+  --footer-bg:                  #050505;
+  --footer-pad-top:             80px;
+  --footer-pad-bottom:          30px;
+  --footer-z:                   10;
+
+  /* --- Top border line --- */
+  --footer-line-opacity:        0.5;
+  --footer-line-shadow:         0 -10px 20px var(--primary-color);
+
+  /* --- Content grid --- */
+  --footer-grid-cols:           1.2fr 1fr 1.2fr;
+  --footer-grid-gap:            40px;
+  --footer-grid-gap-tablet:     50px;
+  --footer-content-mb:          50px;
+
+  /* --- Headings (h4) --- */
+  --footer-h4-size:             1.1rem;
+  --footer-h4-spacing:          1px;
+  --footer-h4-mb:               20px;
+
+  /* --- Logo --- */
+  --footer-logo-size:           2rem;
+  --footer-logo-mb:             10px;
+  --footer-tagline-color:       #888;
+  --footer-tagline-size:        0.95rem;
+  --footer-tagline-max-width:   300px;
+
+  /* --- Social links --- */
+  --social-gap:                 20px;
+  --social-item-gap:            8px;
+  --social-item-color:          #aaa;
+  --social-item-size:           1rem;
+  --social-item-padding:        8px 16px;
+  --social-item-radius:         50px;
+  --social-item-bg:             rgba(255, 255, 255, 0.03);
+  --social-item-border:         rgba(255, 255, 255, 0.05);
+  --social-item-hover-bg:       rgba(255, 69, 0, 0.1);
+  --social-item-hover-lift:     translateY(-3px);
+  --social-icon-size:           1.2rem;
+  --social-icon-glow:           5px;
+
+  /* --- Mail link --- */
+  --footer-mail-size:           1.2rem;
+  --footer-mail-mt:             5px;
+  --footer-mail-glow:           rgba(255, 69, 0, 0.6);
+  --footer-mail-glow-spread:    15px;
+
+  /* --- Bottom bar --- */
+  --footer-bottom-border:       rgba(255, 255, 255, 0.05);
+  --footer-bottom-pt:           25px;
+  --footer-bottom-color:        #aaa;
+  --footer-bottom-size:         0.85rem;
+  --footer-bottom-spacing:      0.5px;
+
+  /* ==========================================
+           COMPONENT — SHARED SECTIONS
+  ========================================== */
+  /* Section title */
+  --section-title-size:     2.5rem;
+  --section-title-mb:       60px;
+  --section-title-spacing:  2px;
+
+  /* Top title bar */
+  --title-bar-width:        90%;
+  --title-bar-padding:      15px;
+  --title-bar-mb:           60px;
+  --title-bar-mb-tablet:    30px;  /* cramped tablet: less gap below title bar */
+  --title-bar-h1:           2.5rem;
+  --title-bar-h2:           2rem;
+
+  /* Content row */
+  --content-row-gap:        40px;
+
+  /* Text block */
+  --text-block-blur:        15px;
+  --text-block-padding:     20px 0 20px 40px;
+  --text-block-border:      4px;
+  --text-block-h2:          2.2rem;
+  --text-block-h2-mb:       20px;
+  --text-block-h3:          2.5rem;
+  --text-block-h3-mb:       30px;
+  --text-block-p-size:      1.1rem;
+  --text-block-p-mb:        20px;
+  --text-block-p-last-mb:   30px;
+  --text-block-lh:          1.8;
+
+  /* Image box */
+  --image-box-min-height:        400px;
+  --image-box-ratio-tablet:      4/3;     /* single-col: height follows width, no squash */
+  --image-hover-scale:           scale(1.04);
+
+  /* Tablet overrides */
+  --tablet-h1-size:         1.8rem;
+  --tablet-h1-lh:           1.2;
+  --tablet-h2-size:         1.8rem;
+  --tablet-h2-mb:           15px;
+  --tablet-p-mb:            25px;
+  --tablet-cta-padding:     16px 0;
+  --tablet-text-block-pad:  10px;
+  --tablet-p-size:          1rem;
+  --badge-mb:               5px;
+  --tablet-badge-mb:        10px;
+  --tablet-title-bar-mb:    30px;
+  --hero-pad-v-tablet:      40px;  /* tablet vertical padding — tighter than desktop */
+
+  /* CTA button */
+  --cta-padding:            15px 35px;
+  --cta-hover-lift:         translateY(-3px);
+
+  /* ==========================================
+                 Z-INDEX SCALE
+  ========================================== */
+  --z-bg:                   0;     /* decorative bg layers (grids, glows) */
+  --scroll-offset:          var(--nav-height); /* scroll-margin-top for all anchored sections */
+  --z-header:               1000;
+  --z-header-bar:           1001;
+  --z-mobile-menu:          1005;
+
+  /* ==========================================
+                  SHADOWS & FX
+  ========================================== */
+  --glow-spread:            10px;
+
+  /* ==========================================
+                  TRANSITIONS
+  ========================================== */
+  --transition-fast:        0.3s ease;          /* hover states, underlines  */
+  --transition-base:        0.4s ease-in-out;   /* layout / loading bar      */
+  --transition-smooth:      0.8s cubic-bezier(0.25, 1, 0.5, 1);  /* loading bar open */
+
+  /* ==========================================
+     BREAKPOINTS — reference only
+     CSS custom properties cannot be used
+     directly inside @media queries.
+     1023px → tablet  |  768px → mobile
+  ========================================== */
+}
+
+/* ============================================
+   RESET
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: clip;
+  -webkit-overflow-scrolling: touch;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-main);
+  color: var(--color-white);
+  line-height: var(--line-height-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   SHARED LAYOUT
+   ============================================ */
+
+/* Offset all page content below the fixed header — applied once here,
+   so every section is always clear regardless of its internal layout  */
+.app-container {
+  padding-top: var(--nav-height);
+}
+
+/* Anchor offset — every section accounts for the fixed header on scroll */
+section[id] {
+  scroll-margin-top: var(--scroll-offset);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-xs);
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================
+   SHARED COMPONENTS
+   ============================================ */
+
+/* --- Section title --- */
+.section-title {
+  font-size: var(--section-title-size);
+  text-align: center;
+  margin-bottom: var(--section-title-mb);
+  text-transform: uppercase;
+  letter-spacing: var(--section-title-spacing);
+}
+
+/* --- Badge --- */
+.badge {
+  background: transparent;
+  padding: 0;
+  color: var(--primary-color);
+  margin-bottom: var(--badge-mb);
+  display: inline-block;
+}
+
+/* --- Top title bar --- */
+.top-title-bar {
+  width: var(--title-bar-width);
+  max-width: var(--container-max);
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: var(--title-bar-padding);
+  text-align: center;
+  margin: 0 auto var(--title-bar-mb);
+  position: relative;
+  z-index: 2;
+}
+
+.top-title-bar h1 { font-size: var(--title-bar-h1); }
+.top-title-bar h2 { font-size: var(--title-bar-h2); }
+
+/* --- Content row --- */
+.content-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: var(--content-row-gap);
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+.content-row.reverse {
+  flex-direction: row-reverse;
+}
+
+/* --- Text block --- */
+.text-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: var(--border-radius-lg);
+  backdrop-filter: blur(var(--text-block-blur));
+  background: transparent;
+  padding: var(--text-block-padding);
+  border-left: var(--text-block-border) solid var(--primary-color);
+  position: relative;
+}
+
+.text-block h2 {
+  text-align: left;
+  font-size: var(--text-block-h2);
+  margin-bottom: var(--text-block-h2-mb);
+}
+
+.text-block h3 {
+  font-size: var(--text-block-h3);
+  margin-bottom: var(--text-block-h3-mb);
+}
+
+.text-block p {
+  color: var(--text-muted);
+  line-height: var(--text-block-lh);
+  font-size: var(--text-block-p-size);
+  margin-bottom: var(--text-block-p-mb);
+}
+
+.text-block p:last-of-type {
+  margin-bottom: var(--text-block-p-last-mb);
+}
+
+/* Subtle orange gradient behind text block */
+.text-block::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-tint-5), transparent);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* --- Image box --- */
+.image-box {
+  flex: 1;
+  position: relative;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-image);
+  min-height: var(--image-box-min-height);
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-fast);
+}
+
+.image-box img:hover {
+  transform: var(--image-hover-scale);
+}
+
+/* --- CTA button --- */
+.cta-button {
+  text-align: center;
+  display: inline-block;
+  background: var(--primary-color);
+  color: var(--color-white);
+  padding: var(--cta-padding);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.cta-button:hover {
+  transform: var(--cta-hover-lift);
+  box-shadow: var(--shadow-cta-hover);
+  background: var(--primary-hover);
+}
+
+/* ============================================
+   RESPONSIVE — shared components
+   ============================================ */
+
+/* ============================================
+   Tablet-landscape: two columns but cramped
+   → give image a fixed flex-basis so text
+     gets enough breathing room
+   ============================================ */
+@media screen and (min-width: 769px) and (max-width: 1280px) {
+  /* Reduce vertical gaps — less room at this width */
+  .top-title-bar {
+    margin-bottom: var(--title-bar-mb-tablet);
+  }
+
+  .content-row {
+    align-items: center;  /* vertically center when heights differ */
+  }
+
+  .image-box {
+    flex: 0 0 42%;        /* image gets 42%, text gets the rest   */
+    max-width: 42%;
+  }
+
+  .text-block {
+    flex: 1;              /* text expands into remaining space     */
+  }
+}
+
+/* ============================================
+   Tablet-portrait and below: single column
+   ============================================ */
+@media screen and (max-width: 1023px) {
+  .top-title-bar {
+    width: 100%;
+    margin: 0 auto var(--tablet-title-bar-mb) auto;
+  }
+
+  .top-title-bar h1 {
+    font-size: var(--tablet-h1-size);
+    line-height: var(--tablet-h1-lh);
+  }
+
+  .container {
+    padding: 0 var(--container-padding-sm);
+  }
+
+  .content-row,
+  .content-row.reverse {
+    flex-direction: column;
+    gap: var(--content-row-gap);
+  }
+
+  .image-box {
+    flex: none;                               /* reset the 42% rule from above  */
+    max-width: 100%;
+    width: 100%;
+    min-height: unset;                        /* remove desktop floor           */
+    aspect-ratio: var(--image-box-ratio-tablet); /* height scales with width   */
+    margin: 0 auto;
+  }
+
+  /* Image fills the ratio-driven box perfectly */
+  .image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;              /* keep face in frame             */
+  }
+
+  .text-block {
+    flex: none;
+    width: 100%;
+    padding: var(--tablet-text-block-pad);
+  }
+
+  .text-block h2 {
+    font-size: var(--tablet-h2-size);
+    margin-bottom: var(--tablet-h2-mb);
+  }
+
+  .text-block p {
+    font-size: var(--tablet-p-size);
+    margin-bottom: var(--tablet-p-mb);
+  }
+
+  .cta-button {
+    width: 100%;
+    padding: var(--tablet-cta-padding);
+  }
+
+  .badge {
+    margin-bottom: var(--tablet-badge-mb);
+  }
+}

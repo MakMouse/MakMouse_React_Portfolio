@@ -1,0 +1,151 @@
+/* ============================================
+   About — component-scoped tokens + FX
+   Global tokens come from index.css
+   ============================================ */
+
+#about {
+
+  /* --- Grid background --- */
+  --grid-color:     rgba(255, 255, 255, 0.025);
+
+  /* --- Glow 1 (orange, left) --- */
+  --glow1-size:     600px;
+  --glow1-x:       -750px;
+  --glow1-y:       -350px;
+  --glow1-color:    rgba(255, 69, 0, 0.09);
+  --glow1-blur:     80px;
+  --glow1-dur:      15s;
+
+  /* --- Glow 2 (orange, right) --- */
+  --glow2-size:     700px;
+  --glow2-x:        150px;
+  --glow2-y:       -100px;
+  --glow2-color:    rgba(255, 69, 0, 0.12);
+  --glow2-blur:     100px;
+  --glow2-dur:      12s;
+
+  /* --- Base layout — padding drives height, no viewport tricks --- */
+  padding-top: var(--about-pad-v);
+  padding-bottom: var(--about-pad-v);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  background-color: var(--bg-main);
+  background-image: linear-gradient(to bottom, var(--bg-main) 0%, var(--bg-light) 100%);
+  overflow: hidden;
+}
+
+/* ============================================
+   Grid overlay
+   ============================================ */
+
+#about::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 95%);
+  z-index: var(--z-bg);
+  pointer-events: none;
+}
+
+/* ============================================
+   Ambient glows
+   ============================================ */
+
+.about-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-bg);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.about-glow::before,
+.about-glow::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  will-change: transform, filter;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.about-glow::before {
+  width: var(--glow1-size);
+  height: var(--glow1-size);
+  margin-left: var(--glow1-x);
+  margin-top: var(--glow1-y);
+  background: radial-gradient(circle, var(--glow1-color) 0%, transparent 70%);
+  filter: blur(var(--glow1-blur));
+  opacity: 0.8;
+  animation: flowDrift1 var(--glow1-dur) infinite alternate ease-in-out;
+}
+
+.about-glow::after {
+  width: var(--glow2-size);
+  height: var(--glow2-size);
+  margin-left: var(--glow2-x);
+  margin-top: var(--glow2-y);
+  background: radial-gradient(circle, var(--glow2-color) 0%, transparent 70%);
+  filter: blur(var(--glow2-blur));
+  opacity: 0.9;
+  animation: flowDrift2 var(--glow2-dur) infinite alternate ease-in-out;
+}
+
+/* ============================================
+   Glow keyframes
+   ============================================ */
+
+@keyframes flowDrift1 {
+  0%   { transform: translate3d(0,    0,   0) scale(1);    }
+  100% { transform: translate3d(40px, 20px, 0) scale(1.1); }
+}
+
+@keyframes flowDrift2 {
+  0%   { transform: translate3d(0,     0,    0) scale(1);    }
+  100% { transform: translate3d(-40px, -30px, 0) scale(1.05); }
+}
+
+/* ============================================
+   Image — grayscale hover reveal
+   ============================================ */
+
+.about-image-box img {
+  filter: grayscale(100%);
+  transition: filter var(--transition-smooth), transform var(--transition-fast);
+  will-change: filter;          /* tell GPU to composite this layer separately */
+  transform: translateZ(0);     /* force GPU rasterization — eliminates zoom jank */
+  backface-visibility: hidden;  /* prevents flicker during compositing           */
+}
+
+.about-image-box:hover img {
+  filter: grayscale(0%);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media screen and (max-width: 1023px) {
+  #about {
+    display: block;
+    height: auto;
+    padding: var(--about-pad-v-tablet) var(--about-pad-sides-tablet);
+  }
+}

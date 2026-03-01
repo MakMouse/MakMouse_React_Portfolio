@@ -1,0 +1,304 @@
+/* ============================================
+   Reviews — all values pulled from design tokens
+   No magic numbers. No raw colours.
+   Bugs fixed: duplicate hover, duplicate min-height,
+   .review-grid typo, asymmetric mobile padding,
+   clipping max-height removed.
+   ============================================ */
+
+#reviews {
+  /* --- Base layout — padding drives height, no viewport tricks --- */
+  padding-top: var(--reviews-pad-v);
+  padding-bottom: var(--reviews-pad-v);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  background-color: var(--bg-primary);
+  background-image: radial-gradient(var(--reviews-dot-color) 1px, transparent 1px);
+  background-size: var(--reviews-dot-size) var(--reviews-dot-size);
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
+}
+
+/* Glow orb */
+#reviews::before {
+  content: "";
+  position: absolute;
+  top: var(--reviews-glow-top);
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--reviews-glow-size);
+  height: var(--reviews-glow-size);
+  background: radial-gradient(circle, var(--reviews-glow-color) 0%, transparent 70%);
+  filter: blur(var(--reviews-glow-blur));
+  pointer-events: none;
+  z-index: var(--z-bg);
+}
+
+/* ============================================
+   Section title — gradient text
+   ============================================ */
+
+#reviews .section-title {
+  font-size: var(--reviews-title-size);
+  font-weight: var(--reviews-title-weight);
+  text-align: center;
+  background: linear-gradient(
+    to right,
+    var(--reviews-title-grad-start)  0%,
+    var(--reviews-title-grad-mid)    50%,
+    var(--color-white)               100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 var(--reviews-title-glow-spread) var(--reviews-title-glow);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   Reviews grid
+   ============================================ */
+
+.reviews-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--reviews-grid-gap);
+}
+
+/* ============================================
+   Review card
+   ============================================ */
+
+.review-card {
+  background: linear-gradient(
+    180deg,
+    var(--rcard-bg-top)    0%,
+    var(--rcard-bg-bottom) 100%
+  );
+  backdrop-filter: blur(var(--rcard-blur));
+  -webkit-backdrop-filter: blur(var(--rcard-blur));
+  border: 1px solid var(--rcard-border);
+  border-radius: var(--rcard-radius);
+  box-shadow: var(--rcard-shadow);
+  width: var(--rcard-width);
+  min-width: var(--rcard-min-width);
+  max-width: var(--rcard-max-width);
+  padding: var(--rcard-padding);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+  min-height: var(--rcard-min-height); /* single declaration — duplicate removed */
+  transition: all var(--transition-base);
+}
+
+/* Single consolidated hover block — duplicate removed */
+.review-card:hover {
+  transform: var(--rcard-hover-lift);
+  background: var(--rcard-hover-bg);
+  border-color: var(--rcard-hover-border);
+  border-top-color: var(--primary-color);
+  box-shadow: var(--rcard-hover-shadow);
+}
+
+/* ============================================
+   Quote icon
+   ============================================ */
+
+.quote-icon-bg {
+  position: absolute;
+  top: var(--quote-top);
+  right: var(--quote-right);
+  font-size: var(--quote-size);
+  color: var(--quote-color);
+  pointer-events: none;
+  transition: var(--transition-smooth);
+  z-index: var(--z-bg);
+}
+
+.review-card:hover .quote-icon-bg {
+  color: var(--quote-hover-color);
+  transform: var(--quote-hover-transform);
+}
+
+/* ============================================
+   Stars
+   ============================================ */
+
+.stars {
+  color: var(--stars-color);
+  font-size: var(--stars-size);
+  margin-bottom: var(--stars-mb);
+  display: flex;
+  gap: var(--stars-gap);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   Review text
+   ============================================ */
+
+.review-text {
+  font-size: var(--review-text-size);
+  line-height: var(--review-text-lh);
+  color: var(--review-text-color);
+  font-style: italic;
+  margin-bottom: var(--review-text-mb);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   Client info
+   ============================================ */
+
+.client-info {
+  display: flex;
+  align-items: center;
+  gap: var(--client-gap);
+  margin-top: auto;
+  padding-top: var(--client-pt);
+  border-top: 1px solid var(--client-border);
+  position: relative;
+  z-index: 1;
+}
+
+.client-avatar-placeholder {
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  background: var(--avatar-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--avatar-font-size);
+  font-weight: bold;
+  color: var(--primary-color);
+  border: 2px solid var(--avatar-border);
+  box-shadow: 0 0 var(--avatar-glow-spread) var(--avatar-shadow);
+  flex-shrink: 0;
+}
+
+.client-info h3 {
+  color: var(--color-white);
+  font-size: var(--client-name-size);
+  font-weight: 700;
+  margin-bottom: var(--client-name-mb);
+}
+
+.client-info span {
+  color: var(--client-role-color);
+  font-size: var(--client-role-size);
+}
+
+/* ============================================
+   Toast notification
+   ============================================ */
+
+.toast-notification {
+  position: fixed;
+  bottom: var(--toast-bottom);
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: var(--toast-bg);
+  border: 1px solid var(--toast-border);
+  border-radius: var(--toast-radius);
+  box-shadow: var(--toast-shadow);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  z-index: var(--toast-z);
+  transition: var(--toast-transition);
+}
+
+.toast-notification.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: var(--toast-content-gap);
+  padding: var(--toast-padding);
+  color: var(--color-white);
+  font-weight: 500;
+  font-size: var(--toast-font-size);
+}
+
+.toast-icon {
+  color: var(--primary-color);
+  font-size: var(--toast-icon-size);
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: var(--toast-bar-height);
+  background-color: var(--primary-color);
+  width: 0;
+}
+
+.toast-notification.show .toast-progress {
+  animation: toast-timer var(--toast-duration) linear forwards;
+}
+
+@keyframes toast-timer {
+  0%   { width: 100%; }
+  100% { width: 0%;   }
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  #reviews {
+    display: block;
+    height: auto;
+    padding: var(--reviews-pad-v-tablet) var(--reviews-pad-sides-tablet);
+  }
+
+  .reviews-grid {
+    display: grid;
+    place-content: center;
+  }
+
+  .review-card {
+    width: var(--rcard-width);
+    min-width: var(--rcard-min-width-tablet);
+    padding: var(--rcard-padding-tablet);
+    min-height: var(--rcard-min-height);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #reviews {
+    display: block;
+    height: auto;
+    padding: var(--reviews-pad-v-tablet) var(--reviews-pad-sides-tablet);
+  }
+
+  .reviews-grid {
+    display: grid;
+    place-content: center;
+    width: 100%;
+  }
+
+  .review-card {
+    width: var(--rcard-width-mobile);      /* 100% — fills available width */
+    min-width: var(--rcard-min-width-mobile); /* 0 — removes floor that caused overflow */
+    padding: var(--rcard-padding-tablet);
+    min-height: var(--rcard-min-height-mobile);
+  }
+}
