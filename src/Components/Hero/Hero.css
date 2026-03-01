@@ -22,12 +22,15 @@
 
   /* --- Hero layout — scoped padding tokens --- */
   --hero-max-height:   1080px;
-  --hero-pad-top:      30px;  /* added to --nav-height in calc() */
+  --hero-pad-v:        80px;  /* vertical breathing room — defines section height naturally */
+  --hero-pad-top:      30px;  /* tablet only: extra top breathing room */
   --hero-pad-sides:    20px;
   --hero-pad-bottom:   50px;
 
   /* --- Base layout --- */
-  min-height: min(var(--vh, 100vh), var(--hero-max-height));
+  /* Padding drives height — section is content-tall, never artificially stretched */
+  padding-top: var(--hero-pad-v);
+  padding-bottom: var(--hero-pad-v);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -100,7 +103,7 @@
     display: block;
     height: auto;
     min-height: 100vh;
-    padding: calc(var(--nav-height) + var(--hero-pad-top))
+    padding: var(--hero-pad-top)
              var(--hero-pad-sides)
              var(--hero-pad-bottom)
              var(--hero-pad-sides);
