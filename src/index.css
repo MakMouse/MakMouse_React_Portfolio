@@ -23,6 +23,7 @@
 
   --bg-main:                #0a0a0a;  /* page background                */
   --bg-dark:                #020202;  /* deepest surfaces               */
+  --bg-light:               #0f0f1a;  /* subtle lighter surface — about section gradient end */
   --card-bg:                rgba(255, 255, 255, 0.05);
   --header-bg:              rgba(30, 30, 30, 0.65);
   --border-color:           rgba(255, 255, 255, 0.1);
@@ -87,6 +88,13 @@
   --mobile-menu-pb:         40px;
 
   /* ==========================================
+       COMPONENT — ABOUT SECTION
+  ========================================== */
+  --about-pad-v:            80px;  /* vertical padding — content-driven height */
+  --about-pad-v-tablet:     60px;  /* tablet: tighter */
+  --about-pad-sides-tablet: 24px;
+
+  /* ==========================================
            COMPONENT — SHARED SECTIONS
   ========================================== */
   /* Section title */
@@ -144,6 +152,7 @@
   /* ==========================================
                  Z-INDEX SCALE
   ========================================== */
+  --z-bg:                   0;     /* decorative bg layers (grids, glows) */
   --z-header:               1000;
   --z-header-bar:           1001;
   --z-mobile-menu:          1005;

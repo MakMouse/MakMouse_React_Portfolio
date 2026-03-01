@@ -1,5 +1,6 @@
 import Header from './Components/Header/Header.jsx';
 import Hero from './Components/Hero/Hero.jsx';
+import About from './Components/About/About.jsx';
 
 const App = () => {
 
@@ -7,6 +8,7 @@ const App = () => {
     <div className="app-container">
       <Header />
       <Hero />
+      <About />
     </div>
   );
 }
