@@ -128,7 +128,10 @@
 
 .about-image-box img {
   filter: grayscale(100%);
-  transition: filter var(--transition-base);
+  transition: filter var(--transition-smooth), transform var(--transition-fast);
+  will-change: filter;          /* tell GPU to composite this layer separately */
+  transform: translateZ(0);     /* force GPU rasterization — eliminates zoom jank */
+  backface-visibility: hidden;  /* prevents flicker during compositing           */
 }
 
 .about-image-box:hover img {
