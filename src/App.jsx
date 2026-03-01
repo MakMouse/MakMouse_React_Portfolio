@@ -2,6 +2,7 @@ import Header from './Components/Header/Header.jsx';
 import Hero from './Components/Hero/Hero.jsx';
 import About from './Components/About/About.jsx';
 import Skills from './Components/Skills/Skills.jsx';
+import Reviews from './Components/Reviews/Reviews.jsx';
 
 const App = () => {
 
@@ -11,6 +12,7 @@ const App = () => {
       <Hero />
       <About />
       <Skills />
+      <Reviews />
     </div>
   );
 }
