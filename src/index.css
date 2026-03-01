@@ -98,6 +98,7 @@
   --title-bar-width:        90%;
   --title-bar-padding:      15px;
   --title-bar-mb:           60px;
+  --title-bar-mb-tablet:    30px;  /* cramped tablet: less gap below title bar */
   --title-bar-h1:           2.5rem;
   --title-bar-h2:           2rem;
 
@@ -134,6 +135,7 @@
   --badge-mb:               5px;
   --tablet-badge-mb:        10px;
   --tablet-title-bar-mb:    30px;
+  --hero-pad-v-tablet:      40px;  /* tablet vertical padding — tighter than desktop */
 
   /* CTA button */
   --cta-padding:            15px 35px;
@@ -193,6 +195,12 @@ body {
 /* ============================================
    SHARED LAYOUT
    ============================================ */
+
+/* Offset all page content below the fixed header — applied once here,
+   so every section is always clear regardless of its internal layout  */
+.app-container {
+  padding-top: var(--nav-height);
+}
 
 .container {
   max-width: var(--container-max);
@@ -359,6 +367,11 @@ body {
      gets enough breathing room
    ============================================ */
 @media screen and (min-width: 769px) and (max-width: 1280px) {
+  /* Reduce vertical gaps — less room at this width */
+  .top-title-bar {
+    margin-bottom: var(--title-bar-mb-tablet);
+  }
+
   .content-row {
     align-items: center;  /* vertically center when heights differ */
   }
