@@ -120,6 +120,8 @@
   --card-radius:                 24px;
   --card-width:                  40vw;
   --card-min-width:              300px;
+  --card-width-mobile:           100%;   /* fill container — no overflow, no squish */
+  --card-min-width-mobile:       0px;    /* reset floor so 100% takes over        */
   --card-max-width:              600px;
   --card-min-width-tablet:       650px;
   --card-padding:                50px 40px;
@@ -195,6 +197,8 @@
   --rcard-shadow:               0 20px 40px rgba(0, 0, 0, 0.5);
   --rcard-width:                40vw;
   --rcard-min-width:            300px;
+  --rcard-width-mobile:         100%;   /* fill container — no overflow, no squish */
+  --rcard-min-width-mobile:     0px;    /* reset floor so 100% takes over        */
   --rcard-max-width:            600px;
   --rcard-min-width-tablet:     650px;
   --rcard-padding:              40px 30px;

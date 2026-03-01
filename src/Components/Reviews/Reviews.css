@@ -286,18 +286,18 @@
   #reviews {
     display: block;
     height: auto;
-    /* Symmetric padding — asymmetric bug fixed */
     padding: var(--reviews-pad-v-tablet) var(--reviews-pad-sides-tablet);
   }
 
-  /* Bug fixed: was .review-grid (no 's') — never matched JSX className */
   .reviews-grid {
     display: grid;
     place-content: center;
+    width: 100%;
   }
 
   .review-card {
-    width: var(--rcard-width);
+    width: var(--rcard-width-mobile);      /* 100% — fills available width */
+    min-width: var(--rcard-min-width-mobile); /* 0 — removes floor that caused overflow */
     padding: var(--rcard-padding-tablet);
     min-height: var(--rcard-min-height-mobile);
   }

@@ -185,10 +185,12 @@
   .skills-grid {
     display: grid;
     place-content: center;
+    width: 100%;
   }
 
   .skill-card {
-    width: var(--card-width);
+    width: var(--card-width-mobile);      /* 100% — fills available width */
+    min-width: var(--card-min-width-mobile); /* 0 — removes floor that caused overflow */
     padding: var(--card-padding-mobile);
     min-height: var(--card-min-height);
   }
