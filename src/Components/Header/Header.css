@@ -174,7 +174,7 @@
   /* --- Mobile dropdown --- */
   .nav-links {
     position: absolute;
-    top: 100%;
+    top:210%;
     right: 0;
     width: var(--mobile-menu-width);
     max-width: var(--mobile-menu-max-width);
