@@ -15,7 +15,7 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { label: "GitHub", url: "https://github.com/MakMouse/MakMouse_Portfolio", icon: <FaGithub /> },
+    { label: "GitHub", url: "https://github.com/MakMouse/MakMouse_React_Portfolio", icon: <FaGithub /> },
     { label: "Telegram", url: "https://t.me/Andriy_aboba", icon: <FaTelegramPlane /> },
     { label: "LinkedIn", url: "https://www.linkedin.com/in/maksym-frankov-191b363b2/", icon: <FaLinkedin />}
   ];
