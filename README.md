@@ -1,4 +1,4 @@
-# Maksym Frankoм | Personal Portfolio 🚀
+# Maksym Frankov | Personal Portfolio 🚀
 
 > **Status:** Work in Progress (v0.1.0) - Rebuilding from scratch with a solid architecture.
 
@@ -18,7 +18,7 @@ If you want to run this project on your local machine:
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/MakMouse/MakMouse_React_Portfolio](https://github.com/MakMouse/MakMouse_React_Portfolio)
+   git clone [https://github.com/MakMouse/MakMouse_React_Portfolio.git](https://github.com/MakMouse/MakMouse_React_Portfolio.git)
 2. Navigate to the project directory:
    cd your-repo-name
 3. Install dependencies:
@@ -37,4 +37,4 @@ If you want to run this project on your local machine:
 
 [ ] Contact Form / Footer
 
-## Designed and built by Maksym Frankow.
+## Designed and built by Maksym Frankov.
