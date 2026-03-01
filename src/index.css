@@ -261,6 +261,65 @@
   --toast-duration:             1.5s;
 
   /* ==========================================
+       COMPONENT — FOOTER
+  ========================================== */
+
+  /* --- Section layout --- */
+  --footer-bg:                  #050505;
+  --footer-pad-top:             80px;
+  --footer-pad-bottom:          30px;
+  --footer-z:                   10;
+
+  /* --- Top border line --- */
+  --footer-line-opacity:        0.5;
+  --footer-line-shadow:         0 -10px 20px var(--primary-color);
+
+  /* --- Content grid --- */
+  --footer-grid-cols:           1.2fr 1fr 1.2fr;
+  --footer-grid-gap:            40px;
+  --footer-grid-gap-tablet:     50px;
+  --footer-content-mb:          50px;
+
+  /* --- Headings (h4) --- */
+  --footer-h4-size:             1.1rem;
+  --footer-h4-spacing:          1px;
+  --footer-h4-mb:               20px;
+
+  /* --- Logo --- */
+  --footer-logo-size:           2rem;
+  --footer-logo-mb:             10px;
+  --footer-tagline-color:       #888;
+  --footer-tagline-size:        0.95rem;
+  --footer-tagline-max-width:   300px;
+
+  /* --- Social links --- */
+  --social-gap:                 20px;
+  --social-item-gap:            8px;
+  --social-item-color:          #aaa;
+  --social-item-size:           1rem;
+  --social-item-padding:        8px 16px;
+  --social-item-radius:         50px;
+  --social-item-bg:             rgba(255, 255, 255, 0.03);
+  --social-item-border:         rgba(255, 255, 255, 0.05);
+  --social-item-hover-bg:       rgba(255, 69, 0, 0.1);
+  --social-item-hover-lift:     translateY(-3px);
+  --social-icon-size:           1.2rem;
+  --social-icon-glow:           5px;
+
+  /* --- Mail link --- */
+  --footer-mail-size:           1.2rem;
+  --footer-mail-mt:             5px;
+  --footer-mail-glow:           rgba(255, 69, 0, 0.6);
+  --footer-mail-glow-spread:    15px;
+
+  /* --- Bottom bar --- */
+  --footer-bottom-border:       rgba(255, 255, 255, 0.05);
+  --footer-bottom-pt:           25px;
+  --footer-bottom-color:        #aaa;
+  --footer-bottom-size:         0.85rem;
+  --footer-bottom-spacing:      0.5px;
+
+  /* ==========================================
            COMPONENT — SHARED SECTIONS
   ========================================== */
   /* Section title */
